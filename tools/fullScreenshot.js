@@ -34,8 +34,8 @@ var now = new Date();
 
 var dateStr = now.toISOString();
 
-var width = 800;
-var height = 600;
+var width = 1366;
+var height = 1100;
 
 if (typeof process.argv[3] === 'string') {
     var [width, height] = process.argv[3].split('x').map(v => parseInt(v, 10));
@@ -68,9 +68,16 @@ let filename = `full_screenshot_${width}_${height}.png`;
         isMobile
     });
 
-    await page.goto(url, {waitUntil: 'networkidle2'});
+    await page.goto(url.split('#')[0], {waitUntil: 'networkidle2'});
 
     await sleep(delay);
+
+    page.waitFor(1000);
+
+    if (url.indexOf('#') > -1) {
+        // const anchor = url.substring(url.indexOf('#'));
+        page.goto(url);
+    }
 
     await page.screenshot({path: `/screenshots/${filename}`, fullPage: true});
 
