@@ -40,7 +40,7 @@ RUN mkdir /screenshots \
 # Run everything after as non-privileged user.
 USER pptruser
 
-// Expose Port 3000
+# Expose Port 3000
 EXPOSE 3000
 
 ENTRYPOINT ["dumb-init", "--"]
