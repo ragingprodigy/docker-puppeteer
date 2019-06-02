@@ -38,12 +38,12 @@ app.get('/', async (req, res) => {
 
         await page.goto(url.split('#')[0], { waitUntil: 'networkidle2' });
 
-        // Wait for 500ms
+        // Wait for 3000ms
         await (() => {
-            return new Promise(resolve => { setTimeout(resolve, 500); });
+            return new Promise(resolve => { setTimeout(resolve, 3500); });
         })();
 
-        page.waitFor(1500);
+        page.waitFor(3500);
 
         if (url.indexOf('#') > -1) {
             page.goto(url);
